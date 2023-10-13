@@ -9,7 +9,6 @@ const ganhos = require("../controllers/ganhoscontroller");
 /// Rotas de Usuários
 routes.post("/usuarios/login", usuarios.login);
 
-
 routes.get("/usuarios", usuarios.index);
 routes.post("/usuarios/create", usuarios.create);
 // routes.put("/usuarios", usuarios.update);``
@@ -24,10 +23,7 @@ routes.post("/ganhos/create", ganhos.create);
 // /// Rotas de Bancos
 routes.get("/bancos", bancos.index);
 routes.post("/bancos/create", bancos.create);
-// routes.put("/bancos", bancos.update);
-// routes.delete("/bancos/:id", bancos.delete);
+routes.put("/bancos/:id", bancos.update);
+routes.delete("/bancos/:id", bancos.delete);
 
 module.exports = routes;
-
-
-
