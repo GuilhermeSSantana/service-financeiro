@@ -17,6 +17,8 @@ CREATE TABLE "Ganhos" (
     "valor" TEXT NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
+    "userId" TEXT NOT NULL,
+    "bancosId" TEXT NOT NULL,
 
     CONSTRAINT "Ganhos_pkey" PRIMARY KEY ("id")
 );
@@ -36,9 +38,11 @@ CREATE TABLE "Bancos" (
 CREATE TABLE "Gastos" (
     "id" TEXT NOT NULL,
     "name" TEXT NOT NULL,
-    "valor" DOUBLE PRECISION NOT NULL,
+    "valor" TEXT NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
+    "userId" TEXT NOT NULL,
+    "categoriaId" TEXT NOT NULL,
 
     CONSTRAINT "Gastos_pkey" PRIMARY KEY ("id")
 );
@@ -56,3 +60,15 @@ CREATE TABLE "Categoria" (
 
 -- CreateIndex
 CREATE UNIQUE INDEX "User_email_key" ON "User"("email");
+
+-- AddForeignKey
+ALTER TABLE "Ganhos" ADD CONSTRAINT "Ganhos_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Ganhos" ADD CONSTRAINT "Ganhos_bancosId_fkey" FOREIGN KEY ("bancosId") REFERENCES "Bancos"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Gastos" ADD CONSTRAINT "Gastos_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Gastos" ADD CONSTRAINT "Gastos_categoriaId_fkey" FOREIGN KEY ("categoriaId") REFERENCES "Categoria"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
