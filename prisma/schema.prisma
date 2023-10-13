@@ -1,0 +1,68 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = "postgresql://admin:admin@localhost:5432"
+}
+
+model User {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  name      String?
+  password  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  Ganhos Ganhos[]
+  Gastos Gastos[]
+}
+
+model Ganhos {
+  id        String   @id @default(uuid())
+  name      String
+  valor     String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user   User   @relation(fields: [userId], references: [id])
+  userId String
+
+  bancos   Bancos @relation(fields: [bancosId], references: [id])
+  bancosId String
+}
+
+model Bancos {
+  id        String   @id @default(uuid())
+  name      String
+  tipoConta String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  Ganhos Ganhos[]
+}
+
+model Gastos {
+  id        String   @id @default(uuid())
+  name      String
+  valor     String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user   User   @relation(fields: [userId], references: [id])
+  userId String
+
+  categoria   Categoria @relation(fields: [categoriaId], references: [id])
+  categoriaId String
+}
+
+model Categoria {
+  id        String   @id @default(uuid())
+  name      String
+  tipoGasto String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  Gastos Gastos[]
+}
