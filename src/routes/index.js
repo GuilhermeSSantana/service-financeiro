@@ -17,8 +17,8 @@ routes.post("/usuarios/create", usuarios.create);
 /// Rotas de Ganhos
 routes.get("/ganhos", ganhos.index);
 routes.post("/ganhos/create", ganhos.create);
-// routes.put("/ganhos", ganhos.update);
-// routes.delete("/ganhos/:id", ganhos.delete);
+routes.put("/ganhos/alterar", ganhos.alterar);
+routes.delete("/ganhos/deletar", ganhos.deletar);
 
 // /// Rotas de Bancos
 routes.get("/bancos", bancos.index);
