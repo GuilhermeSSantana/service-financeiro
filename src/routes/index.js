@@ -23,9 +23,9 @@ routes.delete("/ganhos/deletar", ganhos.deletar);
 // /// Rotas de Bancos
 routes.get("/bancos", bancos.index);
 routes.post("/bancos/create", bancos.create);
-// routes.put("/bancos/:id", bancos.update);
-// routes.delete("/bancos/:id", bancos.delete);
-
+routes.put("/bancos/alterar", bancos.alterar);
+routes.delete("/bancos/deletar", bancos.deletar);
+    
 module.exports = routes;
 
 
