@@ -4,7 +4,16 @@ const prisma = new PrismaClient();
 
 module.exports = {
   async index(req, res) {
-    const bancos = await prisma.bancos.findMany();
+    const bancos = await prisma.bancos.groupBy({
+      by: ["name", "tipoConta"],
+      _count: {
+        name: true,
+        tipoConta: true,
+      },
+      orderBy: {
+        name: "asc",
+      },
+    });
 
     return res.json(bancos);
   },
