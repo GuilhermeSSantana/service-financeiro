@@ -24,7 +24,7 @@ routes.delete("/ganhos/deletar", ganhos.deletar);
 routes.get("/bancos", bancos.index);
 routes.post("/bancos/create", bancos.create);
 routes.put("/bancos/alterar", bancos.alterar);
-routes.delete("/bancos/deletar", bancos.deletar);
+routes.delete("/bancos/deletar/:id", bancos.deletar);
     
 module.exports = routes;
 

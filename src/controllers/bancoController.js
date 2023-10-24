@@ -33,7 +33,8 @@ module.exports = {
 
   async alterar(req, res) {
     try {
-      const { id, name, tipoConta } = req.body;
+      const { id } = req.params;
+      const { name, tipoConta } = req.body;
 
       const banco = await prisma.bancos.update({
         where: {
@@ -58,7 +59,7 @@ module.exports = {
 
   async deletar(req, res) {
     try {
-      const { id } = req.body;
+      const { id } = req.params;
 
       const banco = await prisma.bancos.delete({
         where: {
